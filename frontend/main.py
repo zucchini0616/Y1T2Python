@@ -5,7 +5,7 @@ import time
 import numpy as np
 st.set_page_config(layout="wide")
 
-my_dataframe = pd.read_excel('sample.xlsx')
+my_dataframe = pd.read_excel('sample.csv')
 
 # st.header("Custom tab component for on-hover navigation bar")
 st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_html=True)
