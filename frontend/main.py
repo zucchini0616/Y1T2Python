@@ -3,9 +3,11 @@ import streamlit as st
 import pandas as pd
 import time
 import numpy as np
+import view
+
 st.set_page_config(layout="wide")
 
-my_dataframe = pd.read_excel('sample.csv')
+my_dataframe = pd.read_csv('sample.csv')
 
 # st.header("Custom tab component for on-hover navigation bar")
 st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_html=True)
