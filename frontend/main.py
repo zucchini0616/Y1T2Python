@@ -15,8 +15,8 @@ st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_ht
 
 
 with st.sidebar:
-    tabs = on_hover_tabs(tabName=['Data Viewing', 'Data Visualisation', 'Data Information','Insights'], 
-                             iconName=['-', '-', '-','-'],
+    tabs = on_hover_tabs(tabName=['Data Viewing', 'Data Visualisation','Insights'], 
+                             iconName=['-', '-', '-'],
                              styles = {'navtab': {'background-color':'#111',
                                                   'color': '#818181',
                                                   'font-size': '18px',
@@ -40,7 +40,7 @@ if tabs =='Data Viewing':
 
 elif tabs == 'Data Visualisation':
     st.title("Data Visualisation")
-    st.write('Name of option is {}'.format(tabs))
+
     chartframe()
     # progress_bar = st.sidebar.progress(0)
     # status_text = st.sidebar.empty()
@@ -62,9 +62,6 @@ elif tabs == 'Data Visualisation':
     # # rerun.
     # st.button("Re-run")
 
-elif tabs == 'Data Information':
-    st.title("Data Information")
-    st.write('Name of option is {}'.format(tabs))
 
 elif tabs == 'Insights':
     st.title("Insights")

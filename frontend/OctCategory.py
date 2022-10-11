@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
 
-db = pd.read_csv("data\Oct19.csv")
+
 
 def category(db):
     df = pd.DataFrame(db)
@@ -21,7 +21,7 @@ def category(db):
                                                 
     #df['category_code'].value_counts()[-1:-5].plot(kind='bar')
     df['category_code'] = df['category_code'].str.split('.').str[0]
-    trythis = df['category_code'].value_counts().nlargest(5)
+    trythis = df['category_code'].value_counts().nlargest(5).sort_values(ascending=False)
     st.bar_chart(trythis)
 # .plot(kind='bar')
     # plt.title("Top 5 category of October 2019")

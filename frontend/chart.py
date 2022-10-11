@@ -6,7 +6,9 @@ from dailysales import dailysalesjan,dailysalesOct
 from OctCategory import category
 
 def chart1():
-    category()
+    print(option)
+    db = pd.read_csv("data\Oct19.csv")
+    category(db)
     # progress_bar = st.sidebar.progress(0)
     # status_text = st.sidebar.empty()
     # last_rows = np.random.randn(1, 1)
