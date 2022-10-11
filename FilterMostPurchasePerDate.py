@@ -10,7 +10,7 @@ df = df.drop(columns=['category_code'])
 df = df.drop(columns=['brand'])
 df['event_time'] = pd.to_datetime(df['event_time'])
 
-dfByDate = df.groupby([df.event_time.dt.year,df.event_time.dt.month])["price"].sum()
+dfByDate = df.groupby([df.event_time.dt.date])["price"].sum()
 plt.bar(df.event_time.dt.date.unique(),dfByDate)
 plt.show()
 
