@@ -1,4 +1,5 @@
 #from st_on_hover_tabs import on_hover_tabs
+from re import M
 import streamlit as st
 import pandas as pd
 import time
@@ -26,12 +27,25 @@ def viewing():
 
   data = result
   df6 = data.copy()
+  filter1,filter2,export= st.columns(3)
+  with filter1:
+    options_brand = data['brand'].unique().tolist()
+    selected_brand = st.multiselect('Search By brand',options_brand)
+  with filter2:
+    options_mth = data['event_time'].str[:7].unique().tolist()
+    selected_mth = st.multiselect('Search By month',options_mth)
+  def convert_df_to_csv(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
 
-  options_brand = data['brand'].unique().tolist()
-  selected_brand = st.multiselect('Search By brand',options_brand)
-  options_mth = data['event_time'].str[:7].unique().tolist()
-  selected_mth = st.multiselect('Search By month',options_mth)
-
+  with export:
+    st.write("please download the csv here")
+    st.download_button(     
+      label="Download data as CSV",
+      data=convert_df_to_csv(df6),
+      file_name='download.csv',
+      mime='text/csv',
+    )
   if selected_brand:
       df6 = df6[df6["brand"].isin(selected_brand)]
 
@@ -47,17 +61,7 @@ def viewing():
 
 
   ###################download#####################
-  def convert_df_to_csv(df):
-    # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv().encode('utf-8')
 
-
-  st.download_button(
-    label="Download data as CSV",
-    data=convert_df_to_csv(df6),
-    file_name='download.csv',
-    mime='text/csv',
-  )
   #st.dataframe(data)
 
 
