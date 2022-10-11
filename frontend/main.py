@@ -3,10 +3,12 @@ import streamlit as st
 import pandas as pd
 import time
 import numpy as np
+from view import viewing    
 from Datavisual import chartframe
+
 st.set_page_config(layout="wide")
 
-my_dataframe = pd.read_csv('mergedData.csv')
+# my_dataframe = pd.read_csv('sample.csv')
 
 # st.header("Custom tab component for on-hover navigation bar")
 st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_html=True)
@@ -14,7 +16,7 @@ st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_ht
 
 with st.sidebar:
     tabs = on_hover_tabs(tabName=['Data Viewing', 'Data Visualisation', 'Data Information','Insights'], 
-                             iconName=['Data Viewing', 'Data Visualisation', 'Data Information','Insights'],
+                             iconName=['-', '-', '-','-'],
                              styles = {'navtab': {'background-color':'#111',
                                                   'color': '#818181',
                                                   'font-size': '18px',
@@ -31,10 +33,9 @@ with st.sidebar:
                                                      'padding-left': '30px'}}, default_choice=0)
 
 if tabs =='Data Viewing':
-    st.title("Data Viewing")
-    st.write('Name of option is {}'.format(tabs))
-    st.dataframe(my_dataframe)
-    
+    # st.dataframe(my_dataframe)
+    viewing()
+
 
 
 elif tabs == 'Data Visualisation':
