@@ -5,9 +5,11 @@ Mar20.zip
 Jan20.zip
 Nov19.zip
 Oct19.zip
-frontend/__pycache__/view.cpython-310.pyc
+frontend/__pycache__
 __pycache__
 .vscode
-data
 Pipfile
+frontend/venv
+frontend/.vscode
+sample.csv
 venv
