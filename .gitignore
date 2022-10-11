@@ -12,3 +12,4 @@ Pipfile
 frontend/venv
 frontend/.vscode
 sample.csv
+venv
