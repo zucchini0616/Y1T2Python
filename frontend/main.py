@@ -3,9 +3,10 @@ import streamlit as st
 import pandas as pd
 import time
 import numpy as np
+from Datavisual import chartframe
 st.set_page_config(layout="wide")
 
-my_dataframe = pd.read_excel('sample.xlsx')
+my_dataframe = pd.read_csv('mergedData.csv')
 
 # st.header("Custom tab component for on-hover navigation bar")
 st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_html=True)
@@ -33,30 +34,32 @@ if tabs =='Data Viewing':
     st.title("Data Viewing")
     st.write('Name of option is {}'.format(tabs))
     st.dataframe(my_dataframe)
+    
 
 
 elif tabs == 'Data Visualisation':
     st.title("Data Visualisation")
     st.write('Name of option is {}'.format(tabs))
-    progress_bar = st.sidebar.progress(0)
-    status_text = st.sidebar.empty()
-    last_rows = np.random.randn(1, 1)
-    chart = st.line_chart(last_rows)
+    chartframe()
+    # progress_bar = st.sidebar.progress(0)
+    # status_text = st.sidebar.empty()
+    # last_rows = np.random.randn(1, 1)
+    # chart = st.line_chart(last_rows)
 
-    for i in range(1, 100):
-        new_rows = last_rows[-1, :] + np.random.randn(5, 1).cumsum(axis=0)
-        status_text.text("%i%% Complete" % i)
-        chart.add_rows(new_rows)
-        progress_bar.progress(i)
-        last_rows = new_rows
-        time.sleep(0.05)
+    # for i in range(1, 100):
+    #     new_rows = last_rows[-1, :] + np.random.randn(5, 1).cumsum(axis=0)
+    #     status_text.text("%i%% Complete" % i)
+    #     chart.add_rows(new_rows)
+    #     progress_bar.progress(i)
+    #     last_rows = new_rows
+    #     time.sleep(0.05)
 
-    progress_bar.empty()
+    # progress_bar.empty()
 
-    # Streamlit widgets automatically run the script from top to bottom. Since
-    # this button is not connected to any other logic, it just causes a plain
-    # rerun.
-    st.button("Re-run")
+    # # Streamlit widgets automatically run the script from top to bottom. Since
+    # # this button is not connected to any other logic, it just causes a plain
+    # # rerun.
+    # st.button("Re-run")
 
 elif tabs == 'Data Information':
     st.title("Data Information")
