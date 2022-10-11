@@ -4,7 +4,7 @@ import pandas as pd
 import time
 import numpy as np
 import view
-
+from view import viewing    
 st.set_page_config(layout="wide")
 
 my_dataframe = pd.read_csv('sample.csv')
@@ -32,9 +32,9 @@ with st.sidebar:
                                                      'padding-left': '30px'}}, default_choice=0)
 
 if tabs =='Data Viewing':
-    st.title("Data Viewing")
-    st.write('Name of option is {}'.format(tabs))
-    st.dataframe(my_dataframe)
+    # st.dataframe(my_dataframe)
+    viewing()
+
 
 
 elif tabs == 'Data Visualisation':
