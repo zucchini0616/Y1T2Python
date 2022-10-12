@@ -1,4 +1,4 @@
-from chart import chart1,chart2,chart3
+from chart import chart2,chart3
 import streamlit as st
 from OctCategory import category
 import pandas as pd
