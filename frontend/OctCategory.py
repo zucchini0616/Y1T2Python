@@ -42,7 +42,7 @@ def shing1(df):
 
    
 #per day
-def shing2(df):
+#def shing2(df):
     #df = pd.concat(map(pd.read_csv, glob.glob('data/*.csv')))
     # df = pd.read_csv(r"C:\users\shing\Desktop\INF1002 Project\mergedDatafilter.csv")
     # df = df.dropna()
@@ -63,4 +63,4 @@ def shing2(df):
 #print(a)
 #plt.hist(a)
 #plt.show()
-# category(db)
+#category(db)

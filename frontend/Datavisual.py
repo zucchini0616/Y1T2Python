@@ -1,6 +1,6 @@
 from chart import chart2,chart3
 import streamlit as st
-from OctCategory import category,shing1,shing2
+from OctCategory import category,shing1
 import pandas as pd
 import  glob
 import matplotlib.pyplot as plt
