@@ -5,6 +5,9 @@ import glob
 import matplotlib.pyplot as plt
 import numpy as np
 import streamlit as st
+import plotly.express as px
+import pandas as pd
+import matplotlib.pyplot as plt
 
 
 
@@ -40,7 +43,15 @@ def shing1(df):
     # st.bar_chart(df.event_time.dt.to_period('M').dt.strftime('%m/%Y').unique(),dfByMonth)
     st.bar_chart(df)
 
+def jav1(df):
    
+
+    df['category_code'] = df['category_code'].astype('string')
+    df['category_code'] = df['category_code'].str.split(".", expand=True)[0]
+    df = df.groupby('category_code')['price'].agg(['sum']).sort_values('sum', ascending= False)[:5]
+    st.bar_chart(df)
+    # df.plot(kind='bar')
+    # plt.show()  
 #per day
 # def shing2(db):
 #     df = pd.concat(map(pd.read_csv, glob.glob('data/*.csv')))

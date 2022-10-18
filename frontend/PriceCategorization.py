@@ -1,76 +1,81 @@
 # Importing libraries
 import matplotlib.pyplot as plt
 import pandas as pd
-
+import streamlit as st
 
 # Reading local CSV file and assigning them to a list
-df = pd.read_csv('/Users/calvinleow/Downloads/Feb20.csv')
-price_amount = df[df.columns[4]].tolist()
+df = pd.read_csv('data/Feb20.csv')
 
-# Assigning all counters to 0
-purchasesBelow50 = 0
-purchasesBelow100 = 0
-purchasesBelow250 = 0
-purchasesBelow500 = 0
-purchasesBelow1000 = 0
-purchasesEqualBelow2000 = 0
-purchasesAbove2000 = 0
+def calvin2(df):
+    price_amount = df[df.columns[4]].tolist()
 
-
-# Counting through the list
-for i in price_amount:
-    if i < 50:
-        purchasesBelow50 += 1
-    elif i < 100:
-        purchasesBelow100 += 1
-    elif i < 250:
-        purchasesBelow250 += 1
-    elif i < 500:
-        purchasesBelow500 += 1
-    elif i < 1000:
-        purchasesBelow1000 += 1
-    elif i <= 2000:
-        purchasesEqualBelow2000 += 1
-    elif i > 2000:
-        purchasesAbove2000 +=1
-
-print(f'The number of purchases below $50 are: {purchasesBelow50}')
-print(f'The number of purchases below $100 are: {purchasesBelow100}')
-print(f'The number of purchases below $250 are: {purchasesBelow250}')
-print(f'The number of purchases below $500 are: {purchasesBelow500}')
-print(f'The number of purchases below $1000 are: {purchasesBelow1000}')
-print(f'The number of purchases below or equal to $2000 are: {purchasesEqualBelow2000}')
-print(f'The number of purchases more than $2000 are: {purchasesAbove2000}')
-
-# function to add value labels
-def addlabels(x, y):
-    for i in range(len(x)):
-        plt.text(i, y[i] // 2, y[i], ha='center')
+    # Assigning all counters to 0
+    purchasesBelow50 = 0
+    purchasesBelow100 = 0
+    purchasesBelow250 = 0
+    purchasesBelow500 = 0
+    purchasesBelow1000 = 0
+    purchasesEqualBelow2000 = 0
+    purchasesAbove2000 = 0
 
 
-if __name__ == '__main__':
-    # creating data on which bar chart will be plot
-    x = ["< $50", "< $100", "< $250",
-         "< $500", "< $1000", "<= $2000", "> $2000"]
+    # Counting through the list
+    for i in price_amount:
+        if i < 50:
+            purchasesBelow50 += 1
+        elif i < 100:
+            purchasesBelow100 += 1
+        elif i < 250:
+            purchasesBelow250 += 1
+        elif i < 500:
+            purchasesBelow500 += 1
+        elif i < 1000:
+            purchasesBelow1000 += 1
+        elif i <= 2000:
+            purchasesEqualBelow2000 += 1
+        elif i > 2000:
+            purchasesAbove2000 +=1
 
-    y = [purchasesBelow50, purchasesBelow100, purchasesBelow250, purchasesBelow500,
-         purchasesBelow1000, purchasesEqualBelow2000, purchasesAbove2000]
+    print(f'The number of purchases below $50 are: {purchasesBelow50}')
+    print(f'The number of purchases below $100 are: {purchasesBelow100}')
+    print(f'The number of purchases below $250 are: {purchasesBelow250}')
+    print(f'The number of purchases below $500 are: {purchasesBelow500}')
+    print(f'The number of purchases below $1000 are: {purchasesBelow1000}')
+    print(f'The number of purchases below or equal to $2000 are: {purchasesEqualBelow2000}')
+    print(f'The number of purchases more than $2000 are: {purchasesAbove2000}')
 
-    # setting figure size by using figure() function
-    plt.figure(figsize=(10, 5))
+    # function to add value labels
+    # def addlabels(x, y):
+    #     for i in range(len(x)):
+    #         plt.text(i, y[i] // 2, y[i], ha='center')
 
-    # making the bar chart on the data
-    plt.bar(x, y)
 
-    # calling the function to add value labels
-    addlabels(x, y)
+    # if __name__ == '__main__':
+        # creating data on which bar chart will be plot
+    pricecat = ["< $50", "< $100", "< $250", "< $500", "< $1000", "<= $2000", "> $2000"]
+    priceamount = [purchasesBelow50, purchasesBelow100, purchasesBelow250, purchasesBelow500,
+        purchasesBelow1000, purchasesEqualBelow2000, purchasesAbove2000]
+    priceamount = [ int(x) for x in priceamount ]
 
-    # giving title to the plot
-    plt.title("Price Categorization")
+    df = pd.DataFrame(priceamount,pricecat)
 
-    # giving X and Y labels
-    plt.xlabel("Price")
-    plt.ylabel("Number of Purchases")
+    st.bar_chart(df)
 
-    # visualizing the plot
-    plt.show()
+        # # setting figure size by using figure() function
+        # plt.figure(figsize=(10, 5))
+
+        # # making the bar chart on the data
+        # plt.bar(x, y)
+
+        # # calling the function to add value labels
+        # addlabels(x, y)
+
+        # # giving title to the plot
+        # plt.title("Price Categorization")
+
+        # # giving X and Y labels
+        # plt.xlabel("Price")
+        # plt.ylabel("Number of Purchases")
+
+        # # visualizing the plot
+        # plt.show()

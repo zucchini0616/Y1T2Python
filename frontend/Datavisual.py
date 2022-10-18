@@ -1,6 +1,6 @@
 from chart import chart2,chart3
 import streamlit as st
-from OctCategory import category,shing1
+from OctCategory import category,shing1,jav1
 import pandas as pd
 import  glob
 import matplotlib.pyplot as plt
@@ -8,6 +8,7 @@ import pandas as pd
 from collections import Counter
 from collections import OrderedDict
 from TopFiveBrands_Month import   calvin1
+from PriceCategorization import calvin2
 def chartframe():
     option = st.selectbox('Please select the month you want to view',('Apr 2020', 'Mar 2020', 'Feb 2020', 'Jan 2020',
         'Dec 2019', 'Nov 2019', 'Oct 2019'))
@@ -32,17 +33,22 @@ def chartframe():
                 category(db)
             with col3:
                 st.header("Sales amount from Oct 19 to Apr 20")
-                df = pd.concat(map(pd.read_csv, glob.glob('data1/*.csv')))
+                df = pd.concat(map(pd.read_csv, glob.glob('data/*.csv')))
                 # db = pd.read_csv("data\Oct19.csv")              
                 shing1(df)
             with col4:
                 st.header("Top 5 category of October 2019")
     elif option == "Nov 2019":
-            
-            st.header("Sales amount from Oct 19 to Apr 20")
-            df = pd.concat(map(pd.read_csv, glob.glob('data/*.csv')))
-            # db = pd.read_csv("data\Oct19.csv")              
-            shing1(df)
+            col1, col2= st.columns(2)
+            with col1:
+                st.header("Sales amount from Oct 19 to Apr 20")
+                df = pd.read_csv('data/Feb20.csv')
+                # db = pd.rea
+            with col2:
+                st.header("Sales amount from Oct 19 to Apr 20")
+                df = pd.concat(map(pd.read_csv, glob.glob('data/*.csv')))
+                # db = pd.read_csv("data\Oct19.csv")              
+                calvin2(df)
 
     elif option == "Feb 2020":
             col1, col2= st.columns(2)
@@ -55,7 +61,7 @@ def chartframe():
                 st.header("Sales amount from Oct 19 to Apr 20")
                 df = pd.read_csv('data/Mar20.csv')
                 # db = pd.read_csv("data\Oct19.csv")              
-                calvin1(df)
+                jav1(df)
           
             
                 # db = pd.read_csv("data\Oct19.csv")              
