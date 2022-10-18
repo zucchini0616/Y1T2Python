@@ -1,7 +1,9 @@
 from chart import chart2,chart3
 import streamlit as st
-from OctCategory import category
+from OctCategory import category,shing1
 import pandas as pd
+import  glob
+
 def chartframe():
     option = st.selectbox('Please select the month you want to view',('Apr 2020', 'Mar 2020', 'Feb 2020', 'Jan 2020',
         'Dec 2019', 'Nov 2019', 'Oct 2019'))
@@ -16,6 +18,7 @@ def chartframe():
                 category(db)
     elif option == "Oct 2019":
             col1, col2= st.columns(2)
+            col3, col4= st.columns(2)
             with col1:
                 st.header("Number of Daily sale of October 2019")
                 chart3()
@@ -23,6 +26,23 @@ def chartframe():
                 st.header("Top 5 category of October 2019")
                 db = pd.read_csv("data\Oct19.csv")              
                 category(db)
+            with col3:
+                st.header("Sales amount from Oct 19 to Apr 20")
+                df = pd.concat(map(pd.read_csv, glob.glob('data1/*.csv')))
+                # db = pd.read_csv("data\Oct19.csv")              
+                shing1(df)
+            with col4:
+                st.header("Top 5 category of October 2019")
+    elif option == "Nov 2019":
+            
+            st.header("Sales amount from Oct 19 to Apr 20")
+            df = pd.concat(map(pd.read_csv, glob.glob('data/*.csv')))
+            # db = pd.read_csv("data\Oct19.csv")              
+            shing1(df)
+          
+            
+                # db = pd.read_csv("data\Oct19.csv")              
+                # shing2(db)
                 
         # col1, col2= st.columns(2)
         # # col3, col4 = st.columns(2)

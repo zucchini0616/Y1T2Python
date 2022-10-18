@@ -23,32 +23,37 @@ def category(db):
     df['category_code'] = df['category_code'].str.split('.').str[0]
     trythis = df['category_code'].value_counts().nlargest(5).sort_values(ascending=False)
     st.bar_chart(trythis)
-
-def shing1(db):
-    df = pd.concat(map(pd.read_csv, glob.glob(r'C:\Users\shing\Desktop\INF1002 Project\Data/*.csv')))
+# per month
+def shing1(df):
+    
     # df = pd.read_csv(r"C:\users\shing\Desktop\INF1002 Project\mergedDatafilter.csv")
     df = df.dropna()
     df = df.drop(columns=['event_type'])
     df = df.drop(columns=['category_code'])
     df = df.drop(columns=['brand'])
-    df['event_time'] = pd.to_datetime(df['event_time'])
+    df['event_time'] = df['event_time'].str[:7]
 
-    dfByMonth = df.groupby([df.event_time.dt.year,df.event_time.dt.month])["price"].sum()
-    plt.bar(df.event_time.dt.to_period('M').dt.strftime('%m/%Y').unique(),dfByMonth)
-    plt.show()
+    df = df.groupby([df.event_time])["price"].sum()
+ 
+    # print(df)
 
-def shing2(db):
-    df = pd.concat(map(pd.read_csv, glob.glob(r'C:\Users\shing\Desktop\INF1002 Project\Data/*.csv')))
-    # df = pd.read_csv(r"C:\users\shing\Desktop\INF1002 Project\mergedDatafilter.csv")
-    df = df.dropna()
-    df = df.drop(columns=['event_type'])
-    df = df.drop(columns=['category_code'])
-    df = df.drop(columns=['brand'])
-    df['event_time'] = pd.to_datetime(df['event_time'])
+    # st.bar_chart(df.event_time.dt.to_period('M').dt.strftime('%m/%Y').unique(),dfByMonth)
+    st.bar_chart(df)
 
-    dfByDate = df.groupby([df.event_time.dt.date])["price"].sum()
-    plt.bar(df.event_time.dt.date.unique(),dfByDate)
-    plt.show()
+   
+#per day
+# def shing2(db):
+#     df = pd.concat(map(pd.read_csv, glob.glob('data/*.csv')))
+#     # df = pd.read_csv(r"C:\users\shing\Desktop\INF1002 Project\mergedDatafilter.csv")
+#     df = df.dropna()
+#     df = df.drop(columns=['event_type'])
+#     df = df.drop(columns=['category_code'])
+#     df = df.drop(columns=['brand'])
+#     df['event_time'] = pd.to_datetime(df['event_time'])
+
+#     dfByDate = df.groupby([df.event_time.dt.date])["price"].sum()
+#     st.bar_chart(df.event_time.dt.date.unique(),dfByDate)
+    # plt.show()
 # .plot(kind='bar')
     # plt.title("Top 5 category of October 2019")
     # plt.xlabel("Category")

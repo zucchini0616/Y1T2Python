@@ -3,7 +3,7 @@ import time
 import numpy as np
 import pandas as pd
 from dailysales import dailysalesjan,dailysalesOct
-from OctCategory import category
+from OctCategory import category,shing1
 
 # def chart1():
 #     db = pd.read_csv("data\Oct19.csv")
