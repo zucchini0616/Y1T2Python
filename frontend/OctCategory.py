@@ -8,7 +8,7 @@ import streamlit as st
 import plotly.express as px
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import datetime as dt
 
 
 def category(db):
@@ -53,18 +53,19 @@ def jav1(df):
     # df.plot(kind='bar')
     # plt.show()  
 #per day
-#def shing2(df):
+def shing2(df):
     #df = pd.concat(map(pd.read_csv, glob.glob('data/*.csv')))
-    # df = pd.read_csv(r"C:\users\shing\Desktop\INF1002 Project\mergedDatafilter.csv")
-    # df = df.dropna()
-    # df = df.drop(columns=['event_type'])
-    # df = df.drop(columns=['category_code'])
-    # df = df.drop(columns=['brand'])
-    # df['event_time'] = pd.to_datetime(df['event_time'])
+    #df = pd.read_csv(r"C:\users\shing\Desktop\INF1002 Project\mergedDatafilter.csv")
+    df = df.dropna()
+    df = df.drop(columns=['event_type'])
+    df = df.drop(columns=['category_code'])
+    df = df.drop(columns=['brand'])
+    df['event_time'] = (df['event_time'].str[:10])
 
-    # dfByDate = df.groupby([df.event_time.dt.date])["price"].sum()
-    # st.bar_chart(df.event_time.dt.date.unique(),dfByDate)
-    # plt.show()
+    df = df.groupby([df.event_time])["price"].sum()
+    #st.bar_chart(df.event_time.dt.date.unique(),dfByDate)
+    st.bar_chart(df)
+
 # .plot(kind='bar')
     # plt.title("Top 5 category of October 2019")
     # plt.xlabel("Category")
