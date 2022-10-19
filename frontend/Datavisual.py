@@ -121,7 +121,7 @@ def chartframe():
             col1, col2= st.columns(2)
             col3, col4= st.columns(2)
             col5, col6= st.columns(2)
-            db = pd.read_csv("data\Dec20.csv")
+            db = pd.read_csv("data\Dec19.csv")
             with col1:
                 st.header("Top 5 category of December 2020 by no. of purchase")             
                 category(db)
@@ -147,7 +147,7 @@ def chartframe():
             col1, col2= st.columns(2)
             col3, col4= st.columns(2)
             col5, col6= st.columns(2)
-            db = pd.read_csv("data\Nov20.csv")
+            db = pd.read_csv("data\\Nov19.csv")
             with col1:
                 st.header("Top 5 category of November 2020 by no. of purchase")             
                 category(db)
@@ -173,7 +173,7 @@ def chartframe():
         col1, col2= st.columns(2)
         col3, col4= st.columns(2)
         col5, col6= st.columns(2)
-        db = pd.read_csv("data\Oct20.csv")
+        db = pd.read_csv("data\Oct19.csv")
         with col1:
             st.header("Top 5 category of October 2020 by no. of purchase")             
             category(db)

@@ -60,6 +60,47 @@ def viewing():
       st.dataframe(data)
 
 
+def viewing1(pd):
+
+
+
+  
+
+
+  st.markdown("# Data Viewing")
+
+  data = pd
+  df6 = data.copy()
+  filter1,export= st.columns(2)
+  with filter1:
+    options_brand = data['brand'].unique().tolist()
+    selected_brand = st.multiselect('Search By brand',options_brand)
+ 
+  def convert_df_to_csv(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
+
+  with export:
+    st.write(" ")
+    st.download_button(     
+      label="Download as CSV",
+      data=convert_df_to_csv(df6),
+      file_name='download.csv',
+      mime='text/csv',
+    )
+  if selected_brand:
+      df6 = df6[df6["brand"].isin(selected_brand)]
+
+
+
+
+  if selected_brand:
+      st.dataframe(df6.reset_index(drop = True))
+      cd = "df6"
+  else:
+      st.dataframe(data)
+
+
   ###################download#####################
 
   #st.dataframe(data)

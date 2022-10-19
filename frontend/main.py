@@ -4,9 +4,14 @@ import streamlit as st
 import pandas as pd
 import time
 import numpy as np
-from view import viewing    
+from view import viewing,viewing1
 from Datavisual import chartframe
 from PIL import Image
+from io import StringIO
+from OctCategory import category,shing1,jav1
+from TopFiveBrands_Month import   calvin1
+from PriceCategorization import calvin2
+from chart import  chart2
 
 st.set_page_config(layout="wide")
 
@@ -17,8 +22,8 @@ st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_ht
 
 
 with st.sidebar:
-    tabs = on_hover_tabs(tabName=['Data Viewing', 'Data Visualisation','Insights'], 
-                             iconName=['-', '-', '-'],
+    tabs = on_hover_tabs(tabName=['Data Viewing', 'Data Visualisation','Insights','User Input'], 
+                             iconName=['-', '-', '-','-'],
                              styles = {'navtab': {'background-color':'#111',
                                                   'color': '#818181',
                                                   'font-size': '18px',
@@ -36,35 +41,12 @@ with st.sidebar:
 
 if tabs =='Data Viewing':
     # st.dataframe(my_dataframe)
+    st.title("Data Visualisation")
     viewing()
-
-
-
 elif tabs == 'Data Visualisation':
     st.title("Data Visualisation")
 
     chartframe()
-    # progress_bar = st.sidebar.progress(0)
-    # status_text = st.sidebar.empty()
-    # last_rows = np.random.randn(1, 1)
-    # chart = st.line_chart(last_rows)
-
-    # for i in range(1, 100):
-    #     new_rows = last_rows[-1, :] + np.random.randn(5, 1).cumsum(axis=0)
-    #     status_text.text("%i%% Complete" % i)
-    #     chart.add_rows(new_rows)
-    #     progress_bar.progress(i)
-    #     last_rows = new_rows
-    #     time.sleep(0.05)
-
-    # progress_bar.empty()
-
-    # # Streamlit widgets automatically run the script from top to bottom. Since
-    # # this button is not connected to any other logic, it just causes a plain
-    # # rerun.
-    # st.button("Re-run")
-
-
 elif tabs == 'Insights':
     st.title("Insights")
     col1, col2= st.columns(2)
@@ -107,25 +89,45 @@ elif tabs == 'Insights':
         st.header("Total 5 category price of all months")
         image = Image.open('img/price.png')
         st.image(image, caption='Sales of all months')
-# To implement with styles:
 
-# (These are the current default CSS styles for the tabs)
+elif tabs == 'User Input':
+    st.title("User Input")
+    uploaded_file = st.file_uploader("Choose a file")
+    if uploaded_file is not None:
+        # To read file as bytes:
+        # bytes_data = uploaded_file.getvalue()
+        # st.write(bytes_data)
 
-# with st.sidebar:
-#         tabs = on_hover_tabs(tabName=['Data Viewing', 'Data Visualisation', 'Data Information','Insights'], 
-#                              iconName=['Data Viewing', 'Data Visualisation', 'Data Information','Insights'],
-#                              styles = {'navtab': {'background-color':'#111',
-#                                                   'color': '#818181',
-#                                                   'font-size': '18px',
-#                                                   'transition': '.3s',
-#                                                   'white-space': 'nowrap',
-#                                                   'text-transform': 'uppercase'},
-#                                        'tabOptionsStyle': {':hover :hover': {'color': 'red',
-#                                                                       'cursor': 'pointer'}},
-#                                        'iconStyle':{'position':'fixed',
-#                                                     'left':'7.5px',
-#                                                     'text-align': 'left'},
-#                                        'tabStyle' : {'list-style-type': 'none',
-#                                                      'margin-bottom': '30px',
-#                                                      'padding-left': '30px'}},
-#                              key="1")
+        # To convert to a string based IO:
+        # stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
+        # st.write(stringio)
+
+        # To read file as string:
+        # string_data = stringio.read()
+        # st.write(string_data)
+
+        # Can be used wherever a "file-like" object is accepted:
+        dataframe = pd.read_csv(uploaded_file)
+        viewing1(dataframe)
+        # st.write(dataframe)
+        
+        col1, col2= st.columns(2)
+        col3, col4= st.columns(2)
+        col5, col6= st.columns(2)
+        
+        with col1:
+            st.header("Top 5 category  by no. of purchase")             
+            category(dataframe)
+        with col2:
+            st.header("Top 5 category  by sales amount")
+            jav1(dataframe)
+        with col3:
+            st.header("Top 5 brand  by no. of purchase")
+            calvin1(dataframe)
+        with col4:
+            st.header("Price Range ")
+            calvin2(dataframe)
+        with col5:
+            st.header("No. of purchase trend ")
+            chart2(dataframe)
+
