@@ -39,9 +39,9 @@ def viewing():
     return df.to_csv().encode('utf-8')
 
   with export:
-    st.write("please download the csv here")
+    st.write("")
     st.download_button(     
-      label="Download data as CSV",
+      label="Download as CSV",
       data=convert_df_to_csv(df6),
       file_name='download.csv',
       mime='text/csv',
