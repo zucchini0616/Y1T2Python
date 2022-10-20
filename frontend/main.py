@@ -42,8 +42,6 @@ with st.sidebar:
                                                      'padding-left': '30px'}}, default_choice=0)
 
 if tabs =='Data Viewing':
-  
-    st.title("Data Visualisation")
     viewing()
 elif tabs == 'Data Visualisation':
     st.title("Data Visualisation")
