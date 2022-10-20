@@ -1,3 +1,7 @@
+#####################################
+#             Python Team4          #
+#            Zexi  & ZhiHeng        #
+#####################################
 from email.mime import image
 from st_on_hover_tabs import on_hover_tabs
 import streamlit as st
@@ -8,16 +12,14 @@ from view import viewing,viewing1
 from Datavisual import chartframe
 from PIL import Image
 from io import StringIO
-from OctCategory import category,shing1,jav1
-from TopFiveBrands_Month import   calvin1
-from PriceCategorization import calvin2
-from chart import  chart2
+from Charts.Charts import category,shing1,jav1
+from Charts.TopFiveBrands_Month import   calvin1
+from Charts.PriceCategorization import calvin2
+from Charts.DailyPurchase import  chart2
 
 st.set_page_config(layout="wide")
 
-# my_dataframe = pd.read_csv('sample.csv')
 
-# st.header("Custom tab component for on-hover navigation bar")
 st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_html=True)
 
 
@@ -40,13 +42,15 @@ with st.sidebar:
                                                      'padding-left': '30px'}}, default_choice=0)
 
 if tabs =='Data Viewing':
-    # st.dataframe(my_dataframe)
+  
     st.title("Data Visualisation")
     viewing()
 elif tabs == 'Data Visualisation':
     st.title("Data Visualisation")
 
     chartframe()
+####  DONE BY ZhiHeng  #### 
+#### Insights are done by different authors ####
 elif tabs == 'Insights':
     st.title("Insights")
     col1, col2= st.columns(2)
@@ -118,27 +122,15 @@ elif tabs == 'Insights':
         st.header("Analysis")
         st.markdown("From the graph, we can tell that Electronics has the most amount of sales compared to other categories and the difference between the total sales for Electronics is very huge compared to the 2nd place category, Appliances. Total sales amount for Electronics in the month of October 2019 itself is at \\$175 million while the total sales amount for Appliances is \\$15 million.\n\n" + 
         "Based on the graph, entrepreneurs that want to go into the eCommerce sector can look to market Electronic products or Appliances in order to make the most sales and manufacturers can look to produce more of these Electronics products in order to meet the huge market demand.")
-# To implement with styles:
+#### Insights DONE BY ZhiHeng  #### 
 elif tabs == 'User Input':
     st.title("User Input")
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
-        # To read file as bytes:
-        # bytes_data = uploaded_file.getvalue()
-        # st.write(bytes_data)
-
-        # To convert to a string based IO:
-        # stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
-        # st.write(stringio)
-
-        # To read file as string:
-        # string_data = stringio.read()
-        # st.write(string_data)
-
-        # Can be used wherever a "file-like" object is accepted:
+        
         dataframe = pd.read_csv(uploaded_file)
         viewing1(dataframe)
-        # st.write(dataframe)
+       
         
         col1, col2= st.columns(2)
         col3, col4= st.columns(2)
@@ -159,4 +151,4 @@ elif tabs == 'User Input':
         with col5:
             st.header("No. of purchase trend ")
             chart2(dataframe)
-# (These are the current default CSS styles for the tabs)
+

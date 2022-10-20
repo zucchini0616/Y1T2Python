@@ -1,4 +1,8 @@
-#from st_on_hover_tabs import on_hover_tabs
+#####################################
+#             Python Team4          #
+#               ZhiHeng             #
+#####################################
+
 from re import M
 import streamlit as st
 import pandas as pd
@@ -6,10 +10,9 @@ import time
 import numpy as np
 from math import ceil
 
-#C:\Users\Admin\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\streamlit
-#change server.maxMessageSize
 
-#N = 10
+
+
 def viewing():
 
   apr20_df = pd.read_csv("data/Apr20.csv")

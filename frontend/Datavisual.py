@@ -1,14 +1,20 @@
+#############################################
+#                     Python Team4          #
+#            Zexi  &         ZhiHeng        #
+#                  (indicated with comments)#
+#############################################
+
 import streamlit as st
-from OctCategory import category,shing1,shing2,jav1
+from Charts.Charts import category,shing1,shing2,jav1
 import pandas as pd
 import  glob
 import matplotlib.pyplot as plt
 import pandas as pd
 from collections import Counter
 from collections import OrderedDict
-from TopFiveBrands_Month import   calvin1
-from PriceCategorization import calvin2
-from chart import  chart2
+from Charts.TopFiveBrands_Month import   calvin1
+from Charts.PriceCategorization import calvin2
+from Charts.DailyPurchase import  chart2
 def chartframe():
     option = st.selectbox('Please select the month you want to view',('Apr 2020', 'Mar 2020', 'Feb 2020', 'Jan 2020',
         'Dec 2019', 'Nov 2019', 'Oct 2019', 'All available months'))
@@ -133,7 +139,7 @@ def chartframe():
                 calvin1(db)
             with col4:
                 st.header("Price Range of December")
-                #
+               
                 calvin2(db)
             with col5:
                 st.header("No. of purchase trend in December")
@@ -194,8 +200,8 @@ def chartframe():
             st.header("Sales amount per day in October")
                
             shing1(db)
-        
-    elif option == "All available months":
+#### DONE BY ZhiHeng  ####      
+    elif option == "All available months":   
             col1, col2= st.columns(2)
             col3, col4= st.columns(2)
             col5, col6= st.columns(2)
@@ -220,3 +226,4 @@ def chartframe():
                 st.header("Sales amount over all months")
                    
                 shing1(db)        
+#### DONE BY ZhiHeng  #### 

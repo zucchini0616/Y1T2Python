@@ -1,3 +1,8 @@
+#####################################
+#             Python Team4          #
+#           Zi Bin,Shing,Jav        #
+#####################################
+
 import csv
 import pandas as pd
 import os
@@ -10,7 +15,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import datetime as dt
 
-
+##### Code by Zibin  #####
 def category(db):
     df = pd.DataFrame(db)
 
@@ -27,6 +32,8 @@ def category(db):
     trythis = df['category_code'].value_counts().nlargest(5).sort_values(ascending=False)
     st.bar_chart(trythis)
 # per month
+##### Code by Zibin  #####
+##### Code by Shing  #####
 def shing1(df):
     
     # df = pd.read_csv(r"C:\users\shing\Desktop\INF1002 Project\mergedDatafilter.csv")
@@ -42,7 +49,9 @@ def shing1(df):
 
     # st.bar_chart(df.event_time.dt.to_period('M').dt.strftime('%m/%Y').unique(),dfByMonth)
     st.bar_chart(df)
+##### Code by Shing  #####
 
+##### Code by Jav  #####
 def jav1(df):
    
 
@@ -52,7 +61,9 @@ def jav1(df):
     st.bar_chart(df)
     # df.plot(kind='bar')
     # plt.show()  
-#per day
+
+##### Code by Jav  #####
+##### Code by Shing  #####
 def shing2(df):
     #df = pd.concat(map(pd.read_csv, glob.glob('data/*.csv')))
     #df = pd.read_csv(r"C:\users\shing\Desktop\INF1002 Project\mergedDatafilter.csv")
@@ -65,14 +76,6 @@ def shing2(df):
     df = df.groupby([df.event_time])["price"].sum()
     #st.bar_chart(df.event_time.dt.date.unique(),dfByDate)
     st.bar_chart(df)
+##### Code by Shing  #####
 
-# .plot(kind='bar')
-    # plt.title("Top 5 category of October 2019")
-    # plt.xlabel("Category")
-    # plt.ylabel("Number of purchases")
-    # plt.show()
 
-#print(a)
-#plt.hist(a)
-#plt.show()
-#category(db)
